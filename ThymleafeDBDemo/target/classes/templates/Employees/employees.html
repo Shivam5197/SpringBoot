@@ -1,0 +1,56 @@
+<!DOCTYPE HTML>
+<html xmlns:th="https://www.thymeleaf.org/">
+<link rel="stylesheet" th:href="@{/CSS/demo.css}" />
+
+<link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.24/css/jquery.dataTables.css">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>  
+<link href="https://cdn.jsdelivr.net/npm/halfmoon@1.1.1/css/halfmoon-variables.min.css" rel="stylesheet" />
+<head>
+<title>
+List
+</title>
+</head>
+<body>
+<h1 class="funny"> List Of All the Employees </h1>
+
+<hr>
+<hr>
+<a th:href=@{/api/showForm} 
+ class="btn btn-rounded btn-lg btn-primary">Add new Employee</a>
+<hr>
+
+<!-- Striped rows -->
+<table class="display" id="table_id" >
+  <thead>
+    <tr>
+      <th>ID</th>
+      <th>First</th>
+      <th>Last</th>
+      <th class="text-center">Email</th>
+       <th class="text-right">Actions</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr  th:each="Employee : ${listEmployees}">
+      <th th:text="${Employee.id}"/>
+      <th th:text="${Employee.firstName}"/>
+      <th th:text="${Employee.lastName}"/>
+      <td th:text="${Employee.email}" class="text-center"/>
+      <td class="text-right" >
+      <button class="btn btn-primary" type="button">Update</button>
+	  <button class="btn btn-danger" type="button">Delete</button>
+      </td>
+    </tr>
+  </tbody>
+</table>
+
+
+<script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.10.24/js/jquery.dataTables.js"></script>
+
+<script>
+$(document).ready( function () {
+    $('#table_id').DataTable();
+    console.log("Hello");
+} );</script>
+</body>
+</html>
